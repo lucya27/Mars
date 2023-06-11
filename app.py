@@ -10,10 +10,10 @@ client=MongoClient()
 dotenv_path =join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-MONGODB_URI = os.environ.get("MONGODB_URI")
+MONGODB_URL = os.environ.get("MONGODB_URL")
 DB_NAME = os.environ.get("DB_NAME")
 
-client = MongoClient(MONGODB_URI)
+client = MongoClient(MONGODB_URL)
 db = client[DB_NAME]
 
 
