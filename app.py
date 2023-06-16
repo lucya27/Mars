@@ -1,24 +1,20 @@
 import os
-from os.path import join,dirname
+from os.path import join, dirname
 from dotenv import load_dotenv
 
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
-client=MongoClient()
 
-
-dotenv_path =join(dirname(__file__), '.env')
+dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-MONGODB_URL = os.environ.get("MONGODB_URL")
-DB_NAME = os.environ.get("DB_NAME")
+MONGODB_URI = os.environ.get("MONGODB_URI")
+DB_NAME =  os.environ.get("DB_NAME")
 
-client = MongoClient(MONGODB_URL)
+client = MongoClient(MONGODB_URI)
 db = client[DB_NAME]
 
-
-db =client.cluster0
-app =Flask(__name__)
+app = Flask(__name__)
 @app.route('/')
 def home():
     return render_template('index.html')
